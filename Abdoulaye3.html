@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<title>Abdoulaye Diallo</title>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css2?family=Poor+Story&display=swap'); rel='stylesheet' type='text/css'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital@1&family=Mulish:wght@500&display=swap" rel="stylesheet">
+<style>
+    input[type="submit"] {
+      background: blue;
+      color: rgba(200,50,100,1);
+      font-family: 'Xanh Mono', sans-serif;
+    }
+body {
+  margin: 0 auto;
+  max-width: 600px;
+  background: #232323;
+}
+div {
+  height: 300px;
+  background-size: 110%;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Poor Story', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: rgba(0,100,100,1);
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: rgba(100,200,45,1);
+  margin: 0px 0 70px 0;
+  font-family: 'Mulish', sans-serif;
+}
+p {
+  color: rgba(255,255,0,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(100,100,0,1), rgba(0,100,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(0,0,100,1), rgba(100,0,100,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,100,1), rgba(100,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 20px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+  font-family: 'Poor Story', cursive;
+  font-size: 20px;
+  
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEIrPYT374oBBEpamdhjMW1Dk1835yk6xbBbWw95TwOWpqdBMQ4xGd1_TcUUEOkJq9E7M&usqp=CAU");
+}
+.second{
+  background-image: url("https://media.newyorker.com/photos/5d5c40f07ec6dc000826edfa/16:9/w_2560,h_1440,c_limit/Rosner-Popeyes-Primary.jpg");
+}
+.dessert{
+  background-image: url("https://images-gmi-pmc.edge-generalmills.com/087d17eb-500e-4b26-abd1-4f9ffa96a2c6.jpg");
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+    font-family: 'Mulish', sans-serif;
+  
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+input {
+	font-size: 22px;
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Abdoulaye's Fake Restaurant</h1>
+<h2>a New York City restaurant</h2>
+<div class="first">
+<input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Medium-Well Steak<span class="price">$38.75</span><br />
+  <small>Medium-well steak cooked to perfection by top chefs. </small></p>
+</div>
+
+<div class="second">
+<input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Popeyes Chicken Sandwich <span class="price">$7.99</span><br />
+  <small>Popeye's chicken sandwich cooked to please anybody that wants a Popeyes chicken sandwich, but my version.</small></p>
+</div>
+  
+<div class="dessert">
+<input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Cookie <span class="price">$1.99</span><br />
+  <small>A cookie baked with the finest dough.</small></p>
+</div>
+ <br><br>
+  <input id="Email" type="email" placeholder="Your email">
+  <input id="Name" type="name"placeholder="Your name">
+  <input type="submit" id="submit">
+  <br><br>
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+</script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+  
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAc5xi6yIWBQpDTCA5irfR9D9cOb3ky9Fk",
+    authDomain: "abdoulaye3-d0c49.firebaseapp.com",
+    databaseURL: "https://abdoulaye3-d0c49-default-rtdb.firebaseio.com",
+    projectId: "abdoulaye3-d0c49",
+    storageBucket: "abdoulaye3-d0c49.appspot.com",
+    messagingSenderId: "577073078563",
+    appId: "1:577073078563:web:322b4c237e5cf771f36c96"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+const Name = document.querySelector("#Name") 
+const Email = document.querySelector("#Email")
+document.querySelector('#submit').addEventListener('click', Submit)
+const prices = document.querySelectorAll(".price") 
+const quantities = document.querySelectorAll(".quantities")
+const itemsList = ["Steak", "Sandwich", "Cookie"]
+   
+
+function Submit() {
+  const timestamp = buildTimestamp()
+  let total = 0
+  let cart = { }
+  for  (let i=0; i<quantities.length; i=i+1) {
+  	if (quantities[i].value != "0" && quantities[i].value != "") {
+let price = prices[i].innerHTML.replace('$', '')
+			  total = total + quantities[i].value * price	
+  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+  	}
+  	quantities[i].value = ""
+  }
+	
+  
+  set(ref(db, timestamp), {
+	  Name: Name.value,
+      email: Email.value,
+	  cart: cart,
+      totalPrice: total,
+	  paid: "not yet",
+	  
+  });
+
+  Name.value = ""
+  Email.value = ""
+	function buildTimestamp() {
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+
+	  return timestamp
+	}
+
+	function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+
+}
+  
+</script>
+</body>
